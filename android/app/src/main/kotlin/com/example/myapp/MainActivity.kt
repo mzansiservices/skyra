@@ -1,4 +1,4 @@
-package com.example.myapp
+package com.batau.sky
 
 import io.flutter.embedding.android.FlutterActivity
 

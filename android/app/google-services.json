@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "221252362247",
+    "project_id": "empowered-h7it1",
+    "storage_bucket": "empowered-h7it1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221252362247:android:932cc3aa3d427cc5984aa2",
+        "android_client_info": {
+          "package_name": "com.batau.sky"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_lig5dddlYi2FzGlGmFQAT8zuIF76FmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221252362247:android:e482e4c816dc7147984aa2",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_lig5dddlYi2FzGlGmFQAT8zuIF76FmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
