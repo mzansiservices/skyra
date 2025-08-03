@@ -36,7 +36,68 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Life Improvement App',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.purple,
+          primaryColor: Colors.purple,
+          scaffoldBackgroundColor: Colors.black,
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            titleTextStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+            iconTheme: IconThemeData(color: Colors.white),
+          ),
+          cardTheme: CardTheme(
+            color: Colors.white.withOpacity(0.1),
+            elevation: 8,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.purple,
+              foregroundColor: Colors.white,
+              elevation: 8,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            ),
+          ),
+          textTheme: const TextTheme(
+            headlineLarge: TextStyle(
+              color: Colors.white,
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
+            headlineMedium: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+            headlineSmall: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ),
+            bodyLarge: TextStyle(color: Colors.white, fontSize: 16),
+            bodyMedium: TextStyle(color: Colors.white, fontSize: 14),
+            labelLarge: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            backgroundColor: Colors.black,
+            selectedItemColor: Colors.purple,
+            unselectedItemColor: Colors.grey,
+            type: BottomNavigationBarType.fixed,
+            elevation: 8,
+          ),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: const AuthWrapper(),
