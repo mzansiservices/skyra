@@ -73,7 +73,7 @@ class _GoalsNotesScreenState extends State<GoalsNotesScreen>
 
   Widget _buildAddGoalSection(GoalProvider goalProvider) {
     return AnimatedCard(
-      margin: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -198,7 +198,7 @@ class _GoalsNotesScreenState extends State<GoalsNotesScreen>
 
   Widget _buildGoalCard(Map<String, dynamic> goal, GoalProvider goalProvider) {
     return AnimatedCard(
-      margin: const EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.only(bottom: 16.0),
       child: ExpansionTile(
         leading: Container(
           decoration: BoxDecoration(

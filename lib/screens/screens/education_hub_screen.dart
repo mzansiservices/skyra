@@ -28,10 +28,12 @@ class _EducationHubScreenState extends State<EducationHubScreen>
       duration: const Duration(milliseconds: 800),
       vsync: this,
     );
-    _slideAnimation =
-        Tween<Offset>(begin: const Offset(0, 0.3), end: Offset.zero).animate(
-          CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic),
-        );
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.3),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic),
+    );
     _slideController.forward();
   }
 
@@ -162,7 +164,7 @@ class _EducationHubScreenState extends State<EducationHubScreen>
                 'Adult High School Diploma',
                 'Complete your high school education through flexible programs designed for adults.',
                 '1-2 years',
-                Icons.graduation_cap,
+                Icons.star,
               ),
               _buildEducationProgram(
                 'Online High School',
@@ -190,7 +192,7 @@ class _EducationHubScreenState extends State<EducationHubScreen>
     IconData icon,
   ) {
     return AnimatedCard(
-      margin: const EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.only(bottom: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

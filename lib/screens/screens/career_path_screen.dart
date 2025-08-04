@@ -158,7 +158,7 @@ class _CareerPathScreenState extends State<CareerPathScreen>
       itemBuilder: (context, index) {
         final course = _courses[index];
         return AnimatedCard(
-          margin: const EdgeInsets.only(bottom: 16.0),
+          padding: const EdgeInsets.only(bottom: 16.0),
           onTap: () => _launchURL(course['url']),
           child: Row(
             children: [
@@ -306,7 +306,7 @@ class _CareerPathScreenState extends State<CareerPathScreen>
 
   Widget _buildCareerCard(Map<String, dynamic> career) {
     return AnimatedCard(
-      margin: const EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.only(bottom: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -433,7 +433,7 @@ class _CareerPathScreenState extends State<CareerPathScreen>
     String url,
   ) {
     return AnimatedCard(
-      margin: const EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.only(bottom: 16.0),
       onTap: () => _launchURL(url),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -49,12 +49,17 @@ class MyApp extends StatelessWidget {
             ),
             iconTheme: IconThemeData(color: Colors.white),
           ),
-          cardTheme: CardTheme(
+          cardTheme: CardThemeData(
             color: Colors.white.withOpacity(0.1),
             elevation: 8,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
+            margin: EdgeInsets.zero, // Add margin if needed
+            clipBehavior: Clip.none, // Add clipBehavior if needed
+            shadowColor: Colors.black, // Add shadowColor if needed
+            surfaceTintColor:
+                Colors.transparent, // Add surfaceTintColor if needed
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
