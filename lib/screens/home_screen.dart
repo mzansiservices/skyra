@@ -34,6 +34,28 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     const MessagesScreen(),
   ];
 
+  final List<String> _screenTitles = [
+    'Dashboard',
+    'Education Hub',
+    'Career Path',
+    'Library',
+    'Goals & Notes',
+    'Safety Resources',
+    'Opportunities',
+    'Messages',
+  ];
+
+  final List<IconData> _screenIcons = [
+    Icons.home,
+    Icons.school,
+    Icons.work,
+    Icons.book,
+    Icons.note,
+    Icons.security,
+    Icons.money,
+    Icons.message,
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -53,13 +75,22 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     super.dispose();
   }
 
+  void _navigateToScreen(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+    _fadeController.reset();
+    _fadeController.forward();
+    Navigator.pop(context); // Close drawer
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnimatedSkyBackground(
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: const Text('Life Improvement App'),
+          title: Text(_screenTitles[_currentIndex]),
           actions: [
             IconButton(
               icon: const Icon(Icons.person),
@@ -74,58 +105,101 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             ),
           ],
         ),
+        drawer: _buildDrawer(),
         body: FadeTransition(
           opacity: _fadeAnimation,
           child: _screens[_currentIndex],
         ),
-        bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.8),
-            border: Border(
-              top: BorderSide(color: Colors.purple.withOpacity(0.3), width: 1),
+      ),
+    );
+  }
+
+  Widget _buildDrawer() {
+    return Drawer(
+      backgroundColor: Colors.black.withOpacity(0.9),
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top: 50, bottom: 20),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.purple.withOpacity(0.8),
+                  Colors.purple.withOpacity(0.4),
+                ],
+              ),
+            ),
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.person,
+                    size: 48,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'Life Improvement App',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Transform Your Life',
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(0.8),
+                    fontSize: 14,
+                  ),
+                ),
+              ],
             ),
           ),
-          child: BottomNavigationBar(
-            currentIndex: _currentIndex,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: Colors.purple,
-            unselectedItemColor: Colors.grey,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            onTap: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-              _fadeController.reset();
-              _fadeController.forward();
-            },
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Dashboard',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.school),
-                label: 'Education',
-              ),
-              BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Career'),
-              BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Library'),
-              BottomNavigationBarItem(icon: Icon(Icons.note), label: 'Goals'),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.security),
-                label: 'Safety',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.money),
-                label: 'Opportunities',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.message),
-                label: 'Messages',
-              ),
-            ],
+          Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.zero,
+              itemCount: _screens.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: Icon(
+                    _screenIcons[index],
+                    color: _currentIndex == index ? Colors.purple : Colors.white,
+                  ),
+                  title: Text(
+                    _screenTitles[index],
+                    style: TextStyle(
+                      color: _currentIndex == index ? Colors.purple : Colors.white,
+                      fontWeight: _currentIndex == index ? FontWeight.bold : FontWeight.normal,
+                    ),
+                  ),
+                  selected: _currentIndex == index,
+                  selectedTileColor: Colors.purple.withOpacity(0.1),
+                  onTap: () => _navigateToScreen(index),
+                );
+              },
+            ),
           ),
-        ),
+          Container(
+            padding: const EdgeInsets.all(16),
+            child: const Text(
+              'Version 1.0.0',
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 12,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -203,37 +277,37 @@ class _DashboardScreenState extends State<DashboardScreen>
                   'Education Hub',
                   Icons.school,
                   Colors.purple,
-                  () => _navigateToScreen(1),
+                  () => _navigateToScreen(context, 1),
                 ),
                 _buildQuickActionCard(
                   'Career Path',
                   Icons.work,
                   Colors.purple,
-                  () => _navigateToScreen(2),
+                  () => _navigateToScreen(context, 2),
                 ),
                 _buildQuickActionCard(
                   'Library',
                   Icons.book,
                   Colors.purple,
-                  () => _navigateToScreen(3),
+                  () => _navigateToScreen(context, 3),
                 ),
                 _buildQuickActionCard(
                   'Goals & Notes',
                   Icons.note,
                   Colors.purple,
-                  () => _navigateToScreen(4),
+                  () => _navigateToScreen(context, 4),
                 ),
                 _buildQuickActionCard(
                   'Safety Resources',
                   Icons.security,
                   Colors.purple,
-                  () => _navigateToScreen(5),
+                  () => _navigateToScreen(context, 5),
                 ),
                 _buildQuickActionCard(
                   'Opportunities',
                   Icons.money,
                   Colors.purple,
-                  () => _navigateToScreen(6),
+                  () => _navigateToScreen(context, 6),
                 ),
               ],
             ),
@@ -351,37 +425,11 @@ class _DashboardScreenState extends State<DashboardScreen>
     );
   }
 
-  void _navigateToScreen(int index) {
-    // This would need to be implemented to navigate to specific screens
-    // For now, we'll just show a snackbar
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Navigating to ${_getScreenName(index)}'),
-        backgroundColor: Colors.purple,
-      ),
-    );
-  }
-
-  String _getScreenName(int index) {
-    switch (index) {
-      case 0:
-        return 'Dashboard';
-      case 1:
-        return 'Education Hub';
-      case 2:
-        return 'Career Path';
-      case 3:
-        return 'Library';
-      case 4:
-        return 'Goals & Notes';
-      case 5:
-        return 'Safety Resources';
-      case 6:
-        return 'Opportunities';
-      case 7:
-        return 'Messages';
-      default:
-        return 'Unknown';
+  void _navigateToScreen(BuildContext context, int index) {
+    // Find the HomeScreen and update its current index
+    final homeScreenState = context.findAncestorStateOfType<_HomeScreenState>();
+    if (homeScreenState != null) {
+      homeScreenState._navigateToScreen(index);
     }
   }
 }
