@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 class UserProvider with ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Map<String, dynamic>? _userData;
-  List<Map<String, dynamic>> _trustedContacts = []; // Add this line
+  List<Map<String, dynamic>> _trustedContacts = [];
   Map<String, dynamic>? get userData => _userData;
   List<Map<String, dynamic>> get trustedContacts => _trustedContacts;
 
@@ -41,19 +41,25 @@ class UserProvider with ChangeNotifier {
         .doc(user.uid)
         .collection('trusted_contacts')
         .add(contact);
-    await fetchUserData();
+    await getTrustedContacts();
   }
 
-  Future<List<Map<String, dynamic>>> getTrustedContacts() async {
+  Future<void> getTrustedContacts() async {
     final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return [];
+    if (user == null) return;
 
-    final snapshot =
-        await _firestore
-            .collection('users')
-            .doc(user.uid)
-            .collection('trusted_contacts')
-            .get();
-    return snapshot.docs.map((doc) => doc.data()).toList();
+    final snapshot = await _firestore
+        .collection('users')
+        .doc(user.uid)
+        .collection('trusted_contacts')
+        .get();
+    
+    _trustedContacts = snapshot.docs.map((doc) {
+      final data = doc.data();
+      data['id'] = doc.id; // Add document ID to the data
+      return data;
+    }).toList();
+    
+    notifyListeners();
   }
 }

@@ -122,7 +122,7 @@ class AuthWrapper extends StatelessWidget {
     if (authProvider.status == AuthStatus.authenticated) {
       return const HomeScreen();
     } else {
-      return const HomeScreen();
+      return const AuthScreen();
     }
   }
 }
